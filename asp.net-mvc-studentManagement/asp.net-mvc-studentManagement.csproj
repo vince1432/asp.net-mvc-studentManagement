@@ -179,6 +179,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Api\StudentsController.cs" />
+    <Compile Include="Controllers\CoursesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\StudentsController.cs" />
@@ -193,13 +194,35 @@
     <Compile Include="Migrations\201911130130173_StudentModel.Designer.cs">
       <DependentUpon>201911130130173_StudentModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201911130336549_AddCourses.cs" />
+    <Compile Include="Migrations\201911130336549_AddCourses.Designer.cs">
+      <DependentUpon>201911130336549_AddCourses.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201911130403098_AddCourses1.cs" />
+    <Compile Include="Migrations\201911130403098_AddCourses1.Designer.cs">
+      <DependentUpon>201911130403098_AddCourses1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201911130407035_courseid.cs" />
+    <Compile Include="Migrations\201911130407035_courseid.Designer.cs">
+      <DependentUpon>201911130407035_courseid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201911130412353_addStudentCourseColumn.cs" />
+    <Compile Include="Migrations\201911130412353_addStudentCourseColumn.Designer.cs">
+      <DependentUpon>201911130412353_addStudentCourseColumn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201911130414193_addStudentCourseidColumn.cs" />
+    <Compile Include="Migrations\201911130414193_addStudentCourseidColumn.Designer.cs">
+      <DependentUpon>201911130414193_addStudentCourseidColumn.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Courses.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\StudentModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModel\CoursesViewModel.cs" />
     <Compile Include="ViewModel\StudentViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -261,6 +284,7 @@
     <Content Include="Views\Students\Index.cshtml" />
     <Content Include="Views\Students\Student.cshtml" />
     <Content Include="Views\Shared\_NavBar.cshtml" />
+    <Content Include="Views\Courses\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -284,6 +308,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201911130130173_StudentModel.resx">
       <DependentUpon>201911130130173_StudentModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911130336549_AddCourses.resx">
+      <DependentUpon>201911130336549_AddCourses.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911130403098_AddCourses1.resx">
+      <DependentUpon>201911130403098_AddCourses1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911130407035_courseid.resx">
+      <DependentUpon>201911130407035_courseid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911130412353_addStudentCourseColumn.resx">
+      <DependentUpon>201911130412353_addStudentCourseColumn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911130414193_addStudentCourseidColumn.resx">
+      <DependentUpon>201911130414193_addStudentCourseidColumn.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

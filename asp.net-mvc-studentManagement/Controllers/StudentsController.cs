@@ -20,7 +20,7 @@ namespace asp.net_mvc_studentManagement.Controllers
         // GET: Students
         public ActionResult Index()
         {
-            var studentsInDb = _context.StudentModels.ToList();
+            var studentsInDb = _context.StudentModels.Include(c => c.Course).ToList();
             var students = new StudentViewModel
             {
                 Students = studentsInDb
@@ -30,14 +30,16 @@ namespace asp.net_mvc_studentManagement.Controllers
 
         public ActionResult Student(int id)
         {
-            var studentsInDb = _context.StudentModels.SingleOrDefault(c => c.Id == id);
+            var studentsInDb = _context.StudentModels.Include(c => c.Course).SingleOrDefault(c => c.Id == id);
 
             var students = new StudentModel
             {
                 Id = studentsInDb.Id,
                 FirstName = studentsInDb.FirstName,
                 LastName = studentsInDb.LastName,
-                BirthDate = studentsInDb.BirthDate
+                BirthDate = studentsInDb.BirthDate,
+                CourseId =studentsInDb.CourseId
+                
             };
 
             return View(students);
