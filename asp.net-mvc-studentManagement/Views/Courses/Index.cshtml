@@ -1,0 +1,27 @@
+﻿@model asp.net_mvc_studentManagement.ViewModel.CoursesViewModel
+@{
+    ViewBag.Title = "Courses";
+}
+
+<h2>Students</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Course</th>
+
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var course in Model.Courses)
+        {
+            <tr>
+            <td>@course.Id</td>
+            <td>@course.Name</td>
+            </tr>
+
+        }
+
+</table>

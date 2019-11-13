@@ -22,6 +22,7 @@ namespace asp.net_mvc_studentManagement.Models
     {
 
         public DbSet<StudentModel> StudentModels { get; set; }
+        public DbSet<Courses> Courses { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)

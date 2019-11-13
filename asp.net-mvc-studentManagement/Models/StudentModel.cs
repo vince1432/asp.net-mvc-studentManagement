@@ -9,11 +9,17 @@ namespace asp.net_mvc_studentManagement.Models
     {
 
         public int Id { get; set; }
+
         public int StudentId { get; set; }
+
         public string FirstName { get; set; }
+
         public string LastName { get; set; }
+
         public DateTime BirthDate { get; set; }
 
+        public Courses Course { get; set; }
 
+        public int CourseId { get; set; }
     }
 }
