@@ -20,6 +20,9 @@ namespace asp.net_mvc_studentManagement.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+
+        public DbSet<StudentModel> StudentModels { get; set; }
+
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {

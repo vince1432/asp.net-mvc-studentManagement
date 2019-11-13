@@ -1,0 +1,27 @@
+﻿@model asp.net_mvc_studentManagement.ViewModel.StudentViewModel
+@{
+    ViewBag.Title = "Students";
+}
+
+<h2>Students</h2>
+
+<table class="table">
+    <thead >
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Birthdate</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var student in Model.Students)
+        {
+            <tr>
+                <td>@student.Id</td>
+                <td>@student.FirstName</td>
+                <td>@student.BirthDate</td>
+            </tr>
+        }
+
+</table>
