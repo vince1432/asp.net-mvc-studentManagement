@@ -11,6 +11,7 @@
             <th>Id</th>
             <th>Course</th>
             <th>Description</th>
+            <th class="col-sm-1">Details</th>
             <th class="col-sm-1">Delete</th>
 
         </tr>
@@ -47,6 +48,13 @@
 
                 {
                     data: "description"
+                },
+                {
+                    data: "id",
+                    render: function (data) {
+                        return "<a class='btn btn-primary' href = '/Courses/Course/" + data +"'>Details </a>";
+                    }
+
                 },
                 {
                     data: "id",
