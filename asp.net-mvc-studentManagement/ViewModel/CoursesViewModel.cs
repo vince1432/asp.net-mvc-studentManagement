@@ -8,6 +8,8 @@ namespace asp.net_mvc_studentManagement.ViewModel
 {
     public class CoursesViewModel
     {
-        public IEnumerable<Courses> Courses { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public byte g { get; set; }
     }
 }

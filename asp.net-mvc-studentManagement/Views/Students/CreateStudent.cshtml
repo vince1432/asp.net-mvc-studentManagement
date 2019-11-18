@@ -1,0 +1,98 @@
+﻿@model asp.net_mvc_studentManagement.ViewModel.StudentViewModel
+@{
+    /**/
+
+    ViewBag.Title = "CreateStudent";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<h2>CreateStudent</h2>
+<form id="newStudent">
+    <div class="form-group">
+        <label>First Name</label>
+        <div>
+
+
+            @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", id = "FirstName", })
+            @Html.ValidationMessageFor(m => m.FirstName)
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Last Name</label>
+        <div>
+
+            @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", id = "LastName" })
+            @Html.ValidationMessageFor(m => m.LastName)
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Birth Date</label>
+
+        @Html.TextBoxFor(m => m.BirthDate, new { @class = "form-control", id = "BirthDate" })
+        @Html.ValidationMessageFor(m => m.BirthDate)
+
+        <div>
+
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.CourseId)
+        <div>
+            @Html.DropDownListFor(m => m.CourseId, new SelectList(Model.Course, "Id", "Name"), "Select Course", new { @class = "form-control", id = "CourseId" })
+            @Html.ValidationMessageFor(m => m.CourseId)
+
+        </div>
+
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+
+@section scripts
+    {
+
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(document).ready(function () {
+
+            var vm = {
+
+            };
+
+            
+
+            $("#newStudent").submit(function (e) {
+                e.preventDefault();
+
+                vm.FirstName = $('#FirstName').val(),
+                vm.LastName = $('#LastName').val(),
+                vm.BirthDate = $('#BirthDate').val(),
+                vm.CourseId = $('#CourseId').val()
+
+                $.ajax({
+
+                        url: "/api/Students",
+                        type: "post",
+                        data: vm
+                    })
+                        .done(function () {
+                            $('#FirstName').val("");
+                            $('#LastName').val("");
+                            $('#BirthDate').val("");
+                            $('#CourseId').val("");
+                            toastr.success("Successful");
+                        })
+                        .fail(function () {
+                           
+                            toastr.error("failed");
+                        });
+
+            });
+
+        });
+
+
+
+    </script>
+}

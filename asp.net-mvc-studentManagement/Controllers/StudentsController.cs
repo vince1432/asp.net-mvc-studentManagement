@@ -20,29 +20,49 @@ namespace asp.net_mvc_studentManagement.Controllers
         // GET: Students
         public ActionResult Index()
         {
-            var studentsInDb = _context.StudentModels.Include(c => c.Course).ToList();
-            var students = new StudentViewModel
-            {
-                Students = studentsInDb
-            };
-            return View(students);
+            
+            return View();
         }
 
         public ActionResult Student(int id)
         {
             var studentsInDb = _context.StudentModels.Include(c => c.Course).SingleOrDefault(c => c.Id == id);
 
-            var students = new StudentModel
-            {
-                Id = studentsInDb.Id,
-                FirstName = studentsInDb.FirstName,
-                LastName = studentsInDb.LastName,
-                BirthDate = studentsInDb.BirthDate,
-                CourseId =studentsInDb.CourseId
-                
-            };
-
-            return View(students);
+            return View(studentsInDb);
         }
+
+        public ViewResult CreateStudent()
+        {
+            var coursesInDb = _context.Courses.ToList();
+
+            var courses = new StudentViewModel
+            {
+                Course = coursesInDb
+            };
+            return View(courses);
+        }
+
+        [HttpPost]
+        public ActionResult Create(StudentModel student)
+        {
+            student.BirthDate = DateTime.Now;
+            _context.StudentModels.Add(student);
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "Students");
+        }
+
+        public ViewResult Views()
+        {
+            var coursesInDb = _context.Courses.ToList();
+
+            var courses = new StudentViewModel
+            {
+                Course = coursesInDb
+            };
+            return View(courses);
+        }
+
+
     }
 }

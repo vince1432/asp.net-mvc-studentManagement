@@ -19,15 +19,23 @@ namespace asp.net_mvc_studentManagement.Controllers
         }
 
         // GET: Courses
-        public ActionResult Index()
+        public ViewResult Index()
         {
-            var coursesInDb =_context.Courses.ToList();
+            return View();
+        }
 
-            var courses = new CoursesViewModel
-            {
-                Courses =coursesInDb
-            };
-            return View(courses);
+        public ViewResult Course(int id)
+        {
+            var courseInDb = _context.Courses.SingleOrDefault(m => m.Id == id);
+
+            return View(courseInDb);
+        }
+
+        public ViewResult CreateCourse()
+        {
+
+
+            return View();
         }
     }
 }
