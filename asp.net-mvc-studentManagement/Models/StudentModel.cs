@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -10,16 +11,24 @@ namespace asp.net_mvc_studentManagement.Models
 
         public int Id { get; set; }
 
-        public int StudentId { get; set; }
-
+        [Required]
+        [Display(Name = "First Name")]
         public string FirstName { get; set; }
-
+        
+        [Required]
+        [Display(Name = "Last Name")]
         public string LastName { get; set; }
 
-        public DateTime BirthDate { get; set; }
+        [Display(Name =  "Birth Date")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
+        public DateTime? BirthDate { get; set; }
 
         public Courses Course { get; set; }
 
+        [Required]
+        [Display(Name = "Course")]
         public int CourseId { get; set; }
     }
+
+    
 }

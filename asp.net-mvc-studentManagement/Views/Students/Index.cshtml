@@ -5,27 +5,92 @@
 
 <h2>Students</h2>
 
-<table class="table">
-    <thead >
+@Html.ActionLink("Add Students", "CreateStudent", "Students", new { @class = "btn btn-primary" })
+<table id="students" class="table table-bordered table-striped table-responsive table-hover">
+    <thead>
         <tr>
             <th>Id</th>
-            <th>Name</th>
+            <th>First Name</th>
+            <th>Last Name</th>
             <th>Birthdate</th>
-            <th>CourseId</th>
             <th>Course</th>
+            <th class="col-sm-1"></th>
+            <th class="col-sm-1"></th>
         </tr>
     </thead>
     <tbody>
 
-        @foreach (var student in Model.Students)
-        {
-            <tr>
-                <td>@student.Id</td>
-                <td>@student.FirstName</td>
-                <td>@student.BirthDate</td>
-                <td>@student.CourseId</td>
-                <td>@student.Course.Name</td>
-            </tr>
-        }
+
+
 
 </table>
+
+
+@section scripts
+    {
+    <script>
+        $(document).ready(function () {
+            
+           
+            var table = $("#students").DataTable({
+                ajax: {
+                    url: "/api/Students",
+                    dataSrc: ""
+                },
+                columns: [
+                    {
+                        data: "id"
+                    },
+                    {
+                        data: "firstName"
+                       
+                        
+
+                    },
+                    {
+                        data: "lastName"
+
+                    },
+                    {
+                        data: "birthDate"
+                    },                
+                    {
+                        data: "course.name"
+
+                    },
+                    {
+                        data: "id",
+                        render: function (data) {
+                            return "<a href= '/Students/Student/"+data+"' class = 'js-delete btn btn-primary' >Details</button>";
+                        }
+
+                    },
+                    {
+                        data: "id",
+                        render: function (data) {
+                            return "<button class = 'js-delete btn btn-danger' data-student-id ='" + data + "'>Delete</button>";
+                        }
+
+                    }
+                ]
+            });
+
+
+            $("#students").on("click", ".js-delete", function () {
+                var button = $(this);
+                bootbox.confirm("Are you sure you want to delete this record?", function (result) {
+                    $.ajax({
+                        url: "/api/Students/" + button.attr("data-student-id"),
+                        method: "DELETE",
+                        success: function () {
+                            table.row(button.parents("tr")).remove().draw();
+                        }
+                    });
+
+                });
+            });
+        });
+    </script>
+
+
+}
